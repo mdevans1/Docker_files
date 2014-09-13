@@ -1,3 +1,5 @@
+database="default"
+username="user"
 password="password"
 prefix="psm_"
 tempfile="/tmp/init.sql"
