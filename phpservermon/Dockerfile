@@ -1,8 +1,6 @@
 FROM centos:latest
 MAINTAINER devstdout.me
 
-VOLUME /var/lib/mysql
-
 #Update the image with the latest packages
 RUN yum update -y; yum clean all
 
@@ -27,5 +25,3 @@ ADD ./initdatabase.sh /opt/initdatabase.sh
 
 RUN chmod +x /opt/startup.sh
 RUN chmod +x /opt/initdatabase.sh
-
-RUN /opt/initdatabase.sh
