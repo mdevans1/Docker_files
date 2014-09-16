@@ -1,7 +1,7 @@
 #Docker phpservermon
 
 + Edit the initdatabase.sh file to set the variables for your database name, username, and password 
-+ Include a tarred copy of phpservermon in your directory
++ Include phpservermon.tar.gz in your directory (http://www.phpservermonitor.org/download/)
 + Build docker image using the Dockerfile
 
 
