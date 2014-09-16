@@ -17,8 +17,9 @@ RUN echo "*/15 * * * * root /usr/bin/php /var/www/html/phpservermon/cron/status.
 #Set Timezone information
 RUN ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 
-#move phpservermon into web directory
-ADD ./phpservermon.tar /var/www/html/
+#move phpservermon into web directory and rename
+ADD ./phpservermon.tar.gz /var/www/html/
+RUN mv /var/www/html/phpservermon* /var/www/html/phpservermon
 
 ADD ./startup.sh /opt/startup.sh
 ADD ./initdatabase.sh /opt/initdatabase.sh
