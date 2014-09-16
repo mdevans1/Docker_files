@@ -1,4 +1,4 @@
-database="default"
+database="defaultdatabase"
 username="user"
 password="password"
 prefix="psm_"
@@ -22,7 +22,7 @@ sleep 5
 
 /usr/bin/mysql -u root < $tempfile
 
-/usr/bin/mysql_admin stop
+/usr/bin/mysqladmin stop
 
 rm $tempfile
 
@@ -31,4 +31,4 @@ define('PSM_DB_HOST', 'localhost');
 define('PSM_DB_NAME', '$database');
 define('PSM_DB_USER', '$username');
 define('PSM_DB_PASS', '$password');
-define('PSM_DB_PREFIX', '$prefix');i" > /var/www/html/phpservermon/config.php
+define('PSM_DB_PREFIX', '$prefix');" > /var/www/html/phpservermon/config.php
