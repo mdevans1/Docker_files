@@ -19,3 +19,19 @@
 + `/opt/startup.sh` will start the necessary services for phpservermon
 
 + You will now have a new instance of phpservermon available at http://hostip/phpservermon
+
++ In the instance that you end up stopping the original container. You can run an image and mount the sql data from the original container using the following commands
+
+    + locate the Container ID of the original image
+       
+        ```
+        docker ps -a
+        CONTAINER ID
+        1c674c6ef6aa        phpservermon:latest
+        ```
+    
+    + Start the phpservermon image and mount the volume from the original container
+
+        `sudo docker run -p 80:80 -i -t --volumes-from 1c674c6ef6aa phpservermon /bin/bash`
+    
+    + `/opt/startup.sh` will start the necessary services for phpservermon
