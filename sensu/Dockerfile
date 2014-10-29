@@ -44,23 +44,30 @@ ADD ./rabbitmq.config /etc/rabbitmq/rabbitmq.config
 
 RUN rabbitmq-plugins enable rabbitmq_management
 
-RUN /etc/init.d/rabbitmq-server start &&\
-rabbitmqctl add_vhost /sensu &&\
-rabbitmqctl add_user sensu mypass &&\ 
-rabbitmqctl set_permissions -p /sensu sensu ".*" ".*" ".*"
-
 #install redis
 
 RUN yum install -y redis
+
+#install and configure sensu
 
 ADD ./CentOS-sensu.repo /etc/yum.repos.d/CentOS-sensu.repo
 
 RUN yum install -y sensu
 
-RUN mkdir /etc/sensu/ssl &\
+RUN mkdir /etc/sensu/ssl &&\
 cd ./joemiller.me-intro-to-sensu/ &&\
 cp client_key.pem client_cert.pem  /etc/sensu/ssl/
 
 ADD ./config.json /etc/sensu/config.json
 
 ADD ./client.json /etc/sensu/conf.d/client.json
+
+#install and configure uchiwa
+
+RUN yum install -y uchiwa
+
+ADD ./uchiwa.json /etc/sensu/uchiwa/
+
+#copy over startup script
+
+ADD ./startservices.sh /opt/startservices.sh
