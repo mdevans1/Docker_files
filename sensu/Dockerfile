@@ -66,7 +66,7 @@ ADD ./client.json /etc/sensu/conf.d/client.json
 
 RUN yum install -y uchiwa
 
-ADD ./uchiwa.json /etc/sensu/uchiwa/
+ADD ./uchiwa.json /etc/sensu/
 
 #copy over startup script
 
