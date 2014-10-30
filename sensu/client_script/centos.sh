@@ -3,6 +3,7 @@
 IFACE='eth0'
 IP=$(ip -4 address show $IFACE | grep 'inet' | sed 's/.*inet \([0-9\.]\+\).*/\1/')
 RABBITMQ_SERVER='127.0.0.1'
+SUBSCRIPTIONS='"test" , "client"'
 
 echo '[sensu]
 name=sensu-main
@@ -13,7 +14,6 @@ enabled=1' > /etc/yum.repos.d/CentOS-sensu.repo
 yum install -y sensu
 
 mkdir -p /etc/sensu/ssl && sudo cp /tmp/client_cert.pem /tmp/client_key.pem /etc/sensu/ssl
-
 
 echo '{
   "rabbitmq": {
@@ -33,8 +33,11 @@ echo '{
   "client": {
     "name": "'$HOSTNAME'",
     "address": "'$IP'",
-    "subscriptions": [ "ALL" ]
+    "subscriptions": [ '$SUBSCRIPTIONS' ]
   }
 }' > /etc/sensu/conf.d/client.json
 
+yum install -y rubygems
+yum install -y ruby-devel
+gem install sensu-plugin --no-rdoc --no-ri
 
