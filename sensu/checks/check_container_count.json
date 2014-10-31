@@ -1,0 +1,10 @@
+{
+  "checks": {
+    "docker_check": {
+      "handlers": ["default"],
+      "command": "/etc/sensu/plugins/check-docker-container.rb -W 2 -C 1",
+      "interval": 60,
+      "subscribers": [ "dockerservers" ]
+    }
+  }
+}
