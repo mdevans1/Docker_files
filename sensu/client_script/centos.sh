@@ -3,11 +3,13 @@
 IFACE='eth0'
 IP=$(ip -4 address show $IFACE | grep 'inet' | sed 's/.*inet \([0-9\.]\+\).*/\1/')
 RABBITMQ_SERVER='127.0.0.1'
-SUBSCRIPTIONS='"test" , "client"'
+SUBSCRIPTIONS='"dockerservers"'
+CENTOSRELEASESEVER='7'
+
 
 echo '[sensu]
 name=sensu-main
-baseurl=http://repos.sensuapp.org/yum/el/$releasever/$basearch/
+baseurl=http://repos.sensuapp.org/yum/el/'$CENTOSRELEASESERVER'/$basearch/
 gpgcheck=0
 enabled=1' > /etc/yum.repos.d/CentOS-sensu.repo
 
