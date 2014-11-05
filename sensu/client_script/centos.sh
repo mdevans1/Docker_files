@@ -39,7 +39,7 @@ echo '{
   }
 }' > /etc/sensu/conf.d/client.json
 
-yum install -y rubygems
-yum install -y ruby-devel
-gem install sensu-plugin --no-rdoc --no-ri
+echo 'EMBEDDED_RUBY=true' > /etc/default/sensu
+
+/opt/sensu/embedded/bin/gem install sensu-plugin --no-rdoc --no-ri
 
