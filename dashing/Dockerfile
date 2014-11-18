@@ -22,3 +22,8 @@ RUN curl -sL https://rpm.nodesource.com/setup | bash - && yum install -y nodejs
 RUN gem install dashing
 RUN gem install bundle
 
+RUN dashing new default_dashboard
+
+RUN gem uninstall eventmachine thin -aIx --force
+
+RUN bundle --gemfile ./default_dashboard/Gemfile
